@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Assessment Questionnaire</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for better aesthetics and mobile responsiveness */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top for longer content */
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 2rem;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #1e3a8a; /* Darker blue for heading */
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2.25rem; /* Larger font for main title */
+            font-weight: 700;
+        }
+        h2 {
+            color: #2563eb; /* Medium blue for section titles */
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+            border-bottom: 2px solid #bfdbfe; /* Light blue border */
+            padding-bottom: 0.5rem;
+        }
+        .question-block {
+            background-color: #eff6ff; /* Very light blue for question blocks */
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #dbeafe; /* Lighter blue border */
+        }
+        .question-text {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #1f2937; /* Dark gray for question text */
+            margin-bottom: 1rem;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease-in-out;
+        }
+        .option-label:hover {
+            background-color: #e0f2fe; /* Lighter blue on hover */
+        }
+        .option-input[type="radio"], .option-input[type="checkbox"] {
+            margin-right: 0.75rem;
+            accent-color: #2563eb; /* Blue accent color for radio/checkbox */
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+        .short-answer-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: #374151;
+            background-color: #f9fafb;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .submit-button {
+            display: block;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background-color: #2563eb; /* Blue button */
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .submit-button:hover {
+            background-color: #1d4ed8; /* Darker blue on hover */
+            transform: translateY(-2px);
+        }
+        .submit-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        #thankYouMessage {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: #065f46; /* Green for success message */
+            font-weight: 600;
+            background-color: #d1fae5; /* Light green background */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+        }
+        #resultsDisplay {
+            margin-top: 1.5rem;
+            text-align: left;
+            width: 100%;
+            max-height: 300px; /* Limit height for scrollability */
+            overflow-y: auto; /* Enable vertical scrolling */
+            background-color: #e0f2fe; /* Light blue for results background */
+            padding: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #90cdf4;
+            color: #1e3a8a;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            white-space: pre-wrap; /* Preserve whitespace and line breaks */
+        }
+        .copy-button {
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            background-color: #10b981; /* Green copy button */
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .copy-button:hover {
+            background-color: #059669; /* Darker green on hover */
+            transform: translateY(-1px);
+        }
+        .copy-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+                border-radius: 1rem;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .question-text {
+                font-size: 1rem;
+            }
+            .option-label {
+                padding: 0.4rem;
+            }
+            .option-input[type="radio"], .option-input[type="checkbox"] {
+                width: 1rem;
+                height: 1rem;
+            }
+            .submit-button {
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
+            }
+            #thankYouMessage {
+                font-size: 1.25rem;
+                padding: 1rem;
+            }
+            .copy-button {
+                font-size: 0.9rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skill Assessment Questionnaire</h1>
+        <p class="text-center text-gray-600 mb-6">Please answer the following questions to help us understand your current knowledge.</p>
+
+        <form id="assessmentForm">
+            <!-- Grammar Section -->
+            <h2>1. Grammar Basics</h2>
+            <div class="question-block">
+                <p class="question-text">1.1 Which word is a "verb" in the sentence: "The cat jumps high."?</p>
+                <label class="option-label">
+                    <input type="radio" name="grammar1" value="Cat" class="option-input"> Cat
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="grammar1" value="Jumps" class="option-input"> Jumps
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="grammar1" value="High" class="option-input"> High
+                </label>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">1.2 Choose the correct sentence:</p>
+                <label class="option-label">
+                    <input type="radio" name="grammar2" value="He go to store." class="option-input"> He go to store.
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="grammar2" value="He goes to the store." class="option-input"> He goes to the store.
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="grammar2" value="Him went to store." class="option-input"> Him went to store.
+                </label>
+            </div>
+
+            <!-- Hindi to English Translation Section -->
+            <h2>2. Language Translation (Hindi to English)</h2>
+            <div class="question-block">
+                <p class="question-text">2.1 Translate the following sentence into English: "मेरा नाम राहुल है।"</p>
+                <textarea name="hindiToEnglish1" rows="2" class="short-answer-input" placeholder="Type your English translation here..."></textarea>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">2.2 Translate the following sentence into English: "आप कैसे हैं?"</p>
+                <textarea name="hindiToEnglish2" rows="2" class="short-answer-input" placeholder="Type your English translation here..."></textarea>
+            </div>
+
+            <h2>3. Language Translation (English to Hindi)</h2>
+            <div class="question-block">
+                <p class="question-text">3.1 Translate the following sentence into Hindi: "How are you doing today?"</p>
+                <textarea name="englishToHindi1" rows="2" class="short-answer-input" placeholder="Type your Hindi translation here..."></textarea>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">3.2 Translate the following sentence into Hindi: "I am learning new skills."</p>
+                <textarea name="englishToHindi2" rows="2" class="short-answer-input" placeholder="Type your Hindi translation here..."></textarea>
+            </div>
+
+            <!-- MS Office Section -->
+            <h2>4. MS Office Basics</h2>
+            <div class="question-block">
+                <p class="question-text">4.1 Which program is used to create documents like letters and reports?</p>
+                <label class="option-label">
+                    <input type="radio" name="msoffice1" value="MS PowerPoint" class="option-input"> MS PowerPoint
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="msoffice1" value="MS Word" class="option-input"> MS Word
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="msoffice1" value="MS Excel" class="option-input"> MS Excel
+                </label>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">4.2 What is MS PowerPoint mainly used for?</p>
+                <label class="option-label">
+                    <input type="radio" name="msoffice2" value="Making drawings" class="option-input"> Making drawings
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="msoffice2" value="Creating slideshows and presentations" class="option-input"> Creating slideshows and presentations
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="msoffice2" value="Sending emails" class="option-input"> Sending emails
+                </label>
+            </div>
+
+            <!-- MS Office Shortcuts Section -->
+            <h2>5. MS Office Shortcuts</h2>
+            <div class="question-block">
+                <p class="question-text">5.1 What is the shortcut key to "Copy" selected text?</p>
+                <label class="option-label">
+                    <input type="radio" name="shortcut1" value="Ctrl + X" class="option-input"> Ctrl + X
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="shortcut1" value="Ctrl + C" class="option-input"> Ctrl + C
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="shortcut1" value="Ctrl + V" class="option-input"> Ctrl + V
+                </label>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">5.2 Which shortcut is used to "Undo" the last action?</p>
+                <label class="option-label">
+                    <input type="radio" name="shortcut2" value="Ctrl + Z" class="option-input"> Ctrl + Z
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="shortcut2" value="Ctrl + Y" class="option-input"> Ctrl + Y
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="shortcut2" value="Ctrl + S" class="option-input"> Ctrl + S
+                </label>
+            </div>
+
+            <!-- Excel Section -->
+            <h2>6. Excel Basics</h2>
+            <div class="question-block">
+                <p class="question-text">6.1 What is a single box in an Excel spreadsheet called?</p>
+                <label class="option-label">
+                    <input type="radio" name="excel1" value="Row" class="option-input"> Row
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excel1" value="Column" class="option-input"> Column
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excel1" value="Cell" class="option-input"> Cell
+                </label>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">6.2 Excel is best used for:</p>
+                <label class="option-label">
+                    <input type="radio" name="excel2" value="writing letters" class="option-input"> Writing letters
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excel2" value="making calculations and organizing data" class="option-input"> Making calculations and organizing data
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excel2" value="creating presentations" class="option-input"> Creating presentations
+                </label>
+            </div>
+
+            <!-- Basic Excel Formulas Section -->
+            <h2>7. Basic Excel Formulas</h2>
+            <div class="question-block">
+                <p class="question-text">7.1 Which formula would you use to add up numbers in cells A1, A2, and A3?</p>
+                <label class="option-label">
+                    <input type="radio" name="excelFormula1" value="=ADD(A1:A3)" class="option-input"> =ADD(A1:A3)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excelFormula1" value="=SUM(A1:A3)" class="option-input"> =SUM(A1:A3)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excelFormula1" value="=TOTAL(A1+A2+A3)" class="option-input"> =TOTAL(A1+A2+A3)
+                </label>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">7.2 What does the formula "=AVERAGE(B1:B5)" do?</p>
+                <label class="option-label">
+                    <input type="radio" name="excelFormula2" value="Finds the largest number in B1 to B5" class="option-input"> Finds the largest number in B1 to B5
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excelFormula2" value="Calculates the average of numbers in B1 to B5" class="option-input"> Calculates the average of numbers in B1 to B5
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="excelFormula2" value="Counts how many numbers are in B1 to B5" class="option-input"> Counts how many numbers are in B1 to B5
+                </label>
+            </div>
+
+            <!-- AI Section -->
+            <h2>8. AI Basics</h2>
+            <div class="question-block">
+                <p class="question-text">8.1 What does "AI" stand for?</p>
+                <label class="option-label">
+                    <input type="radio" name="ai1" value="Automated Intelligence" class="option-input"> Automated Intelligence
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="ai1" value="Artificial Intelligence" class="option-input"> Artificial Intelligence
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="ai1" value="Advanced Information" class="option-input"> Advanced Information
+                </label>
+            </div>
+
+            <div class="question-block">
+                <p class="question-text">8.2 Give one example of how AI is used in daily life. (Short Answer)</p>
+                <textarea name="ai2" rows="3" class="short-answer-input" placeholder="Type your answer here..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Assessment</button>
+        </form>
+
+        <div id="thankYouMessage">
+            <p>Thank you for completing the assessment!</p>
+            <p>Here are the answers you provided:</p>
+            <pre id="resultsDisplay"></pre>
+            <button class="copy-button" onclick="copyResults()">Copy Answers</button>
+            <p class="text-xs text-gray-500 mt-2">You can copy these answers and paste them into an email.</p>
+        </div>
+    </div>
+
+    <script>
+        const assessmentForm = document.getElementById('assessmentForm');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+        const resultsDisplay = document.getElementById('resultsDisplay');
+
+        assessmentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(assessmentForm);
+            let answersText = "--- Skill Assessment Results ---\n\n";
+
+            // Iterate over form elements to get questions and answers
+            // This approach is more robust for displaying all questions, even unanswered ones
+            const questions = document.querySelectorAll('.question-block');
+            questions.forEach((block, index) => {
+                const questionNumber = block.querySelector('.question-text').innerText.split(' ')[0]; // e.g., "1.1"
+                const questionText = block.querySelector('.question-text').innerText.substring(questionNumber.length + 1).trim();
+                let answer = "Not answered"; // Default if no answer is found
+
+                const inputName = block.querySelector('[name]').name; // Get the name of the input field
+
+                if (block.querySelector('input[type="radio"]')) {
+                    const selectedRadio = block.querySelector(`input[name="${inputName}"]:checked`);
+                    if (selectedRadio) {
+                        answer = selectedRadio.value;
+                    }
+                } else if (block.querySelector('textarea')) {
+                    answer = block.querySelector('textarea').value.trim();
+                    if (answer === "") {
+                        answer = "No answer provided";
+                    }
+                }
+                answersText += `${questionNumber} ${questionText}\nAnswer: ${answer}\n\n`;
+            });
+
+            resultsDisplay.textContent = answersText;
+
+            assessmentForm.style.display = 'none';
+            thankYouMessage.style.display = 'flex'; // Use flex to center content
+        });
+
+        function copyResults() {
+            const textToCopy = resultsDisplay.textContent;
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy'); // Deprecated but works in iframes
+            document.body.removeChild(textArea);
+            alert("Answers copied to clipboard!"); // Use a simple alert for confirmation
+        }
+    </script>
+</body>
+</html>
