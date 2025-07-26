@@ -199,32 +199,37 @@
         <h1>Skill Assessment Questionnaire</h1>
         <p class="text-center text-gray-600 mb-6">Please answer the following questions to help us understand your current knowledge.</p>
 
-        <form id="assessmentForm">
+        <!-- The form's action attribute is now set to a Formspree endpoint -->
+        <!-- Replace YOUR_FORMSPREE_ENDPOINT_HERE with your actual Formspree form ID -->
+        <form id="assessmentForm" action="https://formspree.io/f/movldkdq" method="POST">
+            <!-- Hidden field for a custom subject in the email -->
+            <input type="hidden" name="_subject" value="Skill Assessment Submission">
+
             <!-- Grammar Section -->
             <h2>1. Grammar Basics</h2>
             <div class="question-block">
                 <p class="question-text">1.1 Which word is a "verb" in the sentence: "The cat jumps high."?</p>
                 <label class="option-label">
-                    <input type="radio" name="grammar1" value="Cat" class="option-input"> Cat
+                    <input type="radio" name="grammar_q1" value="Cat" class="option-input"> Cat
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="grammar1" value="Jumps" class="option-input"> Jumps
+                    <input type="radio" name="grammar_q1" value="Jumps" class="option-input"> Jumps
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="grammar1" value="High" class="option-input"> High
+                    <input type="radio" name="grammar_q1" value="High" class="option-input"> High
                 </label>
             </div>
 
             <div class="question-block">
                 <p class="question-text">1.2 Choose the correct sentence:</p>
                 <label class="option-label">
-                    <input type="radio" name="grammar2" value="He go to store." class="option-input"> He go to store.
+                    <input type="radio" name="grammar_q2" value="He go to store." class="option-input"> He go to store.
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="grammar2" value="He goes to the store." class="option-input"> He goes to the store.
+                    <input type="radio" name="grammar_q2" value="He goes to the store." class="option-input"> He goes to the store.
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="grammar2" value="Him went to store." class="option-input"> Him went to store.
+                    <input type="radio" name="grammar_q2" value="Him went to store." class="option-input"> Him went to store.
                 </label>
             </div>
 
@@ -232,23 +237,23 @@
             <h2>2. Language Translation (Hindi to English)</h2>
             <div class="question-block">
                 <p class="question-text">2.1 Translate the following sentence into English: "मेरा नाम राहुल है।"</p>
-                <textarea name="hindiToEnglish1" rows="2" class="short-answer-input" placeholder="Type your English translation here..."></textarea>
+                <textarea name="hindiToEnglish_q1" rows="2" class="short-answer-input" placeholder="Type your English translation here..."></textarea>
             </div>
 
             <div class="question-block">
                 <p class="question-text">2.2 Translate the following sentence into English: "आप कैसे हैं?"</p>
-                <textarea name="hindiToEnglish2" rows="2" class="short-answer-input" placeholder="Type your English translation here..."></textarea>
+                <textarea name="hindiToEnglish_q2" rows="2" class="short-answer-input" placeholder="Type your English translation here..."></textarea>
             </div>
 
             <h2>3. Language Translation (English to Hindi)</h2>
             <div class="question-block">
                 <p class="question-text">3.1 Translate the following sentence into Hindi: "How are you doing today?"</p>
-                <textarea name="englishToHindi1" rows="2" class="short-answer-input" placeholder="Type your Hindi translation here..."></textarea>
+                <textarea name="englishToHindi_q1" rows="2" class="short-answer-input" placeholder="Type your Hindi translation here..."></textarea>
             </div>
 
             <div class="question-block">
                 <p class="question-text">3.2 Translate the following sentence into Hindi: "I am learning new skills."</p>
-                <textarea name="englishToHindi2" rows="2" class="short-answer-input" placeholder="Type your Hindi translation here..."></textarea>
+                <textarea name="englishToHindi_q2" rows="2" class="short-answer-input" placeholder="Type your Hindi translation here..."></textarea>
             </div>
 
             <!-- MS Office Section -->
@@ -256,26 +261,26 @@
             <div class="question-block">
                 <p class="question-text">4.1 Which program is used to create documents like letters and reports?</p>
                 <label class="option-label">
-                    <input type="radio" name="msoffice1" value="MS PowerPoint" class="option-input"> MS PowerPoint
+                    <input type="radio" name="msoffice_q1" value="MS PowerPoint" class="option-input"> MS PowerPoint
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="msoffice1" value="MS Word" class="option-input"> MS Word
+                    <input type="radio" name="msoffice_q1" value="MS Word" class="option-input"> MS Word
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="msoffice1" value="MS Excel" class="option-input"> MS Excel
+                    <input type="radio" name="msoffice_q1" value="MS Excel" class="option-input"> MS Excel
                 </label>
             </div>
 
             <div class="question-block">
                 <p class="question-text">4.2 What is MS PowerPoint mainly used for?</p>
                 <label class="option-label">
-                    <input type="radio" name="msoffice2" value="Making drawings" class="option-input"> Making drawings
+                    <input type="radio" name="msoffice_q2" value="Making drawings" class="option-input"> Making drawings
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="msoffice2" value="Creating slideshows and presentations" class="option-input"> Creating slideshows and presentations
+                    <input type="radio" name="msoffice_q2" value="Creating slideshows and presentations" class="option-input"> Creating slideshows and presentations
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="msoffice2" value="Sending emails" class="option-input"> Sending emails
+                    <input type="radio" name="msoffice_q2" value="Sending emails" class="option-input"> Sending emails
                 </label>
             </div>
 
@@ -284,26 +289,26 @@
             <div class="question-block">
                 <p class="question-text">5.1 What is the shortcut key to "Copy" selected text?</p>
                 <label class="option-label">
-                    <input type="radio" name="shortcut1" value="Ctrl + X" class="option-input"> Ctrl + X
+                    <input type="radio" name="shortcut_q1" value="Ctrl + X" class="option-input"> Ctrl + X
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="shortcut1" value="Ctrl + C" class="option-input"> Ctrl + C
+                    <input type="radio" name="shortcut_q1" value="Ctrl + C" class="option-input"> Ctrl + C
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="shortcut1" value="Ctrl + V" class="option-input"> Ctrl + V
+                    <input type="radio" name="shortcut_q1" value="Ctrl + V" class="option-input"> Ctrl + V
                 </label>
             </div>
 
             <div class="question-block">
                 <p class="question-text">5.2 Which shortcut is used to "Undo" the last action?</p>
                 <label class="option-label">
-                    <input type="radio" name="shortcut2" value="Ctrl + Z" class="option-input"> Ctrl + Z
+                    <input type="radio" name="shortcut_q2" value="Ctrl + Z" class="option-input"> Ctrl + Z
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="shortcut2" value="Ctrl + Y" class="option-input"> Ctrl + Y
+                    <input type="radio" name="shortcut_q2" value="Ctrl + Y" class="option-input"> Ctrl + Y
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="shortcut2" value="Ctrl + S" class="option-input"> Ctrl + S
+                    <input type="radio" name="shortcut_q2" value="Ctrl + S" class="option-input"> Ctrl + S
                 </label>
             </div>
 
@@ -312,26 +317,26 @@
             <div class="question-block">
                 <p class="question-text">6.1 What is a single box in an Excel spreadsheet called?</p>
                 <label class="option-label">
-                    <input type="radio" name="excel1" value="Row" class="option-input"> Row
+                    <input type="radio" name="excel_q1" value="Row" class="option-input"> Row
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excel1" value="Column" class="option-input"> Column
+                    <input type="radio" name="excel_q1" value="Column" class="option-input"> Column
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excel1" value="Cell" class="option-input"> Cell
+                    <input type="radio" name="excel_q1" value="Cell" class="option-input"> Cell
                 </label>
             </div>
 
             <div class="question-block">
                 <p class="question-text">6.2 Excel is best used for:</p>
                 <label class="option-label">
-                    <input type="radio" name="excel2" value="writing letters" class="option-input"> Writing letters
+                    <input type="radio" name="excel_q2" value="writing letters" class="option-input"> Writing letters
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excel2" value="making calculations and organizing data" class="option-input"> Making calculations and organizing data
+                    <input type="radio" name="excel_q2" value="making calculations and organizing data" class="option-input"> Making calculations and organizing data
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excel2" value="creating presentations" class="option-input"> Creating presentations
+                    <input type="radio" name="excel_q2" value="creating presentations" class="option-input"> Creating presentations
                 </label>
             </div>
 
@@ -340,26 +345,26 @@
             <div class="question-block">
                 <p class="question-text">7.1 Which formula would you use to add up numbers in cells A1, A2, and A3?</p>
                 <label class="option-label">
-                    <input type="radio" name="excelFormula1" value="=ADD(A1:A3)" class="option-input"> =ADD(A1:A3)
+                    <input type="radio" name="excelFormula_q1" value="=ADD(A1:A3)" class="option-input"> =ADD(A1:A3)
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excelFormula1" value="=SUM(A1:A3)" class="option-input"> =SUM(A1:A3)
+                    <input type="radio" name="excelFormula_q1" value="=SUM(A1:A3)" class="option-input"> =SUM(A1:A3)
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excelFormula1" value="=TOTAL(A1+A2+A3)" class="option-input"> =TOTAL(A1+A2+A3)
+                    <input type="radio" name="excelFormula_q1" value="=TOTAL(A1+A2+A3)" class="option-input"> =TOTAL(A1+A2+A3)
                 </label>
             </div>
 
             <div class="question-block">
                 <p class="question-text">7.2 What does the formula "=AVERAGE(B1:B5)" do?</p>
                 <label class="option-label">
-                    <input type="radio" name="excelFormula2" value="Finds the largest number in B1 to B5" class="option-input"> Finds the largest number in B1 to B5
+                    <input type="radio" name="excelFormula_q2" value="Finds the largest number in B1 to B5" class="option-input"> Finds the largest number in B1 to B5
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excelFormula2" value="Calculates the average of numbers in B1 to B5" class="option-input"> Calculates the average of numbers in B1 to B5
+                    <input type="radio" name="excelFormula_q2" value="Calculates the average of numbers in B1 to B5" class="option-input"> Calculates the average of numbers in B1 to B5
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="excelFormula2" value="Counts how many numbers are in B1 to B5" class="option-input"> Counts how many numbers are in B1 to B5
+                    <input type="radio" name="excelFormula_q2" value="Counts how many numbers are in B1 to B5" class="option-input"> Counts how many numbers are in B1 to B5
                 </label>
             </div>
 
@@ -368,19 +373,19 @@
             <div class="question-block">
                 <p class="question-text">8.1 What does "AI" stand for?</p>
                 <label class="option-label">
-                    <input type="radio" name="ai1" value="Automated Intelligence" class="option-input"> Automated Intelligence
+                    <input type="radio" name="ai_q1" value="Automated Intelligence" class="option-input"> Automated Intelligence
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="ai1" value="Artificial Intelligence" class="option-input"> Artificial Intelligence
+                    <input type="radio" name="ai_q1" value="Artificial Intelligence" class="option-input"> Artificial Intelligence
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="ai1" value="Advanced Information" class="option-input"> Advanced Information
+                    <input type="radio" name="ai_q1" value="Advanced Information" class="option-input"> Advanced Information
                 </label>
             </div>
 
             <div class="question-block">
                 <p class="question-text">8.2 Give one example of how AI is used in daily life. (Short Answer)</p>
-                <textarea name="ai2" rows="3" class="short-answer-input" placeholder="Type your answer here..."></textarea>
+                <textarea name="ai_q2" rows="3" class="short-answer-input" placeholder="Type your answer here..."></textarea>
             </div>
 
             <button type="submit" class="submit-button">Submit Assessment</button>
@@ -388,64 +393,59 @@
 
         <div id="thankYouMessage">
             <p>Thank you for completing the assessment!</p>
-            <p>Here are the answers you provided:</p>
-            <pre id="resultsDisplay"></pre>
-            <button class="copy-button" onclick="copyResults()">Copy Answers</button>
-            <p class="text-xs text-gray-500 mt-2">You can copy these answers and paste them into an email.</p>
+            <p>Your answers have been submitted.</p>
+            <p class="text-xs text-gray-500 mt-2">You will receive the report on your registered email ID.</p>
         </div>
     </div>
 
     <script>
         const assessmentForm = document.getElementById('assessmentForm');
         const thankYouMessage = document.getElementById('thankYouMessage');
-        const resultsDisplay = document.getElementById('resultsDisplay');
 
-        assessmentForm.addEventListener('submit', function(event) {
-            event.preventDefault();
+        // We no longer need to manually display or copy results here
+        // as Formspree handles the submission and email.
+        assessmentForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
 
+            const statusMessage = document.createElement('p');
+            statusMessage.textContent = 'Submitting your answers...';
+            statusMessage.className = 'text-center text-blue-600 mt-4';
+            assessmentForm.parentNode.insertBefore(statusMessage, assessmentForm.nextSibling); // Insert after form
+
+            // Use fetch to submit the form data to Formspree
             const formData = new FormData(assessmentForm);
-            let answersText = "--- Skill Assessment Results ---\n\n";
-
-            // Iterate over form elements to get questions and answers
-            // This approach is more robust for displaying all questions, even unanswered ones
-            const questions = document.querySelectorAll('.question-block');
-            questions.forEach((block, index) => {
-                const questionNumber = block.querySelector('.question-text').innerText.split(' ')[0]; // e.g., "1.1"
-                const questionText = block.querySelector('.question-text').innerText.substring(questionNumber.length + 1).trim();
-                let answer = "Not answered"; // Default if no answer is found
-
-                const inputName = block.querySelector('[name]').name; // Get the name of the input field
-
-                if (block.querySelector('input[type="radio"]')) {
-                    const selectedRadio = block.querySelector(`input[name="${inputName}"]:checked`);
-                    if (selectedRadio) {
-                        answer = selectedRadio.value;
+            try {
+                const response = await fetch(assessmentForm.action, {
+                    method: assessmentForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Important for Formspree to return JSON
                     }
-                } else if (block.querySelector('textarea')) {
-                    answer = block.querySelector('textarea').value.trim();
-                    if (answer === "") {
-                        answer = "No answer provided";
+                });
+
+                if (response.ok) {
+                    // Form submitted successfully
+                    assessmentForm.style.display = 'none';
+                    thankYouMessage.style.display = 'flex';
+                    statusMessage.remove(); // Remove the submission message
+                } else {
+                    // Handle errors from Formspree
+                    const data = await response.json();
+                    if (data.errors) {
+                        console.error('Formspree errors:', data.errors);
+                        statusMessage.textContent = 'Error submitting: ' + data.errors.map(e => e.message).join(', ');
+                    } else {
+                        console.error('Formspree submission failed:', response.statusText);
+                        statusMessage.textContent = 'Error submitting. Please try again.';
                     }
+                    statusMessage.className = 'text-center text-red-600 mt-4'; // Change color for error
                 }
-                answersText += `${questionNumber} ${questionText}\nAnswer: ${answer}\n\n`;
-            });
-
-            resultsDisplay.textContent = answersText;
-
-            assessmentForm.style.display = 'none';
-            thankYouMessage.style.display = 'flex'; // Use flex to center content
+            } catch (error) {
+                console.error('Network error during submission:', error);
+                statusMessage.textContent = 'Network error. Please check your connection and try again.';
+                statusMessage.className = 'text-center text-red-600 mt-4'; // Change color for error
+            }
         });
-
-        function copyResults() {
-            const textToCopy = resultsDisplay.textContent;
-            const textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy'); // Deprecated but works in iframes
-            document.body.removeChild(textArea);
-            alert("Answers copied to clipboard!"); // Use a simple alert for confirmation
-        }
     </script>
 </body>
 </html>
